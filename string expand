@@ -1,0 +1,32 @@
+String str="a4n67";
+		char array[]=str.toCharArray();
+		for(int i=0;i<str.length();)
+		{
+			
+			char temp = 0;
+			if(str.charAt(i)>='a' && str.charAt(i)<='z')
+			{
+				temp=str.charAt(i);
+			}
+			i++;
+			
+			String number="";
+			while(i<str.length())
+			{
+				
+				if(str.charAt(i)>='0' && str.charAt(i)<='9')
+				{
+					number+=str.charAt(i);
+					i++;
+				}
+				else
+				{
+					break;
+				}
+			}
+			int num=Integer.parseInt(number);
+			for(int index=0;index<num;index++)
+			{
+				System.out.print(temp);
+			}
+		}
