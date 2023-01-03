@@ -1,0 +1,42 @@
+public static void main(String[] args){	
+		char[][]matrix= {{'a','b','c','e'},
+				{'s','f','c','s'},{'a','d','e','e'}};
+		String word="abcced";
+		boolean flag=exist(matrix,word);
+		System.out.println(flag);
+}
+
+	private static boolean exist(char[][] matrix, String word) {
+		for(int i=0;i<matrix.length;i++)
+		{
+			for(int j=0;j<matrix.length;j++)
+			{
+				if(matrix[i][j]==word.charAt(0) && dfs(matrix,i,j,0,word))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	private static boolean dfs(char [][] matrix,int i, int j, int count, String word) {
+		if(count==word.length())
+		{
+			return true;
+		}
+		if(i<0 || j<0 || i>=matrix.length || j>=matrix[0].length || matrix[i][j]!=word.charAt(count) )
+		{
+			return false;
+		}
+		
+		char temp=matrix[i][j];
+		matrix[i][j]='*';
+		boolean found=(dfs(matrix,i+1,j,count+1,word)||
+				dfs(matrix,i-1,j,count+1,word)||
+				dfs(matrix,i,j+1,count+1,word)||
+				dfs(matrix,i,j-1,count+1,word));
+		matrix[i][j]=temp;
+		return found;
+	}
+}
